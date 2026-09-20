@@ -1,0 +1,11 @@
+diff --git a/_data/playground.yml b/_data/playground.yml
+index 69ea9d1..3565083 100644
+--- a/_data/playground.yml
++++ b/_data/playground.yml
+@@ -10,3 +10,6 @@
+   description: Plenty of focus timers exist already, I just wanted to create one which is warm and appealing to use, and pretty minimalistic in nature. No projects or tasks, just a place to manage focus sessions and breaks.
+   url: https://sagarwadhwa.com/timer_website
+   image: /assets/img/focus_timer_snapshot.png
++- title: Diff
++  description: A small, private tool for comparing two versions of text or code. Paste your text or open local files to see exactly what changed. Everything runs in your browser, with no uploads or saved content.
++  url: /diff/
