@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="A simple, private text and code comparison tool. Everything stays in your browser.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Diff — a little clarity between versions</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./vendor/diff2html-3.4.56.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./vendor/diff-9.0.0.min.js"></script>
+  <script defer src="./vendor/diff2html-3.4.56.min.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">−<br>+</span><h1>Diff<span class="title-dot">.</span></h1></div>
+      <p class="intro">A little clarity between versions.</p>
+      <p class="description">Compare text or code directly in your browser.</p>
+      <p class="privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg>Your files and pasted text never leave your browser.</p>
+    </header>
+
+    <section class="editors" aria-label="Versions to compare">
+      <div class="editor-panel" id="original-panel">
+        <div class="editor-heading"><label for="original"><span class="version-dot original-dot" aria-hidden="true"></span>Original</label><button class="file-button" id="original-open" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z"/></svg>Open file</button><input class="file-input" type="file" id="original-file" tabindex="-1" aria-label="Open original file"></div>
+        <textarea id="original" aria-describedby="original-meta" placeholder="Paste your original text here…" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea>
+        <div class="editor-meta" id="original-meta"><span class="file-name" id="original-name">Or drop a text file</span><span id="original-count">0 lines</span></div>
+        <p class="file-error" id="original-error" role="alert" hidden></p>
+      </div>
+      <div class="editor-panel" id="modified-panel">
+        <div class="editor-heading"><label for="modified"><span class="version-dot modified-dot" aria-hidden="true"></span>Modified</label><button class="file-button" id="modified-open" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7V5a1 1 0 0 1 1-1h5l2 3h9a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z"/></svg>Open file</button><input class="file-input" type="file" id="modified-file" tabindex="-1" aria-label="Open modified file"></div>
+        <textarea id="modified" aria-describedby="modified-meta" placeholder="Paste your updated text here…" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea>
+        <div class="editor-meta" id="modified-meta"><span class="file-name" id="modified-name">Or drop a text file</span><span id="modified-count">0 lines</span></div>
+        <p class="file-error" id="modified-error" role="alert" hidden></p>
+      </div>
+    </section>
+
+    <div class="actions">
+      <div class="secondary-actions"><button class="secondary-button" id="swap" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16m-4-4 4 4-4 4M20 16H4m4-4-4 4 4 4"/></svg>Swap</button><button class="quiet-button" id="clear" type="button">Clear</button></div>
+      <div class="compare-action"><span class="shortcut" id="shortcut">Ctrl ↵</span><button class="primary-button" id="compare" type="button">Compare<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button></div>
+    </div>
+
+    <section class="results" aria-labelledby="diff-title">
+      <div class="results-toolbar">
+        <div class="result-heading"><h2 id="diff-title">Diff</h2><div class="stats" id="stats" hidden><span class="removed" id="removed"></span><span class="added" id="added"></span></div></div>
+        <div class="options"><label class="whitespace-option" title="Ignore leading and trailing whitespace on each line"><input id="ignore-whitespace" type="checkbox">Ignore whitespace</label><div class="view-control" role="group" aria-label="Diff view"><button type="button" id="split-view" aria-pressed="true">Side by side</button><button type="button" id="unified-view" aria-pressed="false">Unified</button></div></div>
+      </div>
+      <p id="result-notice" class="result-notice" role="status" hidden></p>
+      <div class="diff-surface" id="diff-surface">
+        <div class="empty-state" id="empty-state"><span class="state-icon" id="state-icon" aria-hidden="true">≠</span><p id="state-title">See what changed.</p><p id="state-detail">Add your two versions above, then compare.</p></div>
+        <div id="diff-output" hidden></div>
+      </div>
+      <p class="sr-only" id="announcement" role="status" aria-live="polite"></p>
+    </section>
+    <footer><span>Made for the small details.</span><span>Runs entirely in your browser.</span></footer>
+  </main>
+  <noscript><p class="noscript">Enable JavaScript to compare text locally in your browser.</p></noscript>
+</body>
+</html>
